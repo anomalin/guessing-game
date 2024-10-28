@@ -1,0 +1,37 @@
+Vad är pull respektive push?
+
+Pull används för att hämta ändringar till sitt lokala repository från ett remote 
+repository. Push används när man vill ladda upp ändringar som är gjorda på det 
+lokala repositoriet upp till remote repository. 
+
+När använder man log respektive status? 
+
+Log används när man vill se en lista över alla commits, på det sättet kan man följa 
+projektet genom alla tillägg och ändringar. Status används istället när man vill se 
+aktuell status och huruvida man har något som ska läggas till i staging area 
+alternativt sådant som ska comittas. 
+
+Vad är en Git branch och varför är de viktiga? 
+
+En branch är en kopia av ditt projekt vilket gör att du kan jobba på den "grenen" 
+och sedan merga med masterbranch. T.ex. kan man jobba med nya tillägg eller features 
+på en branch och sedan merge med master istället för att riskera att ställa till det 
+i koden i huvudgrenen. 
+
+Ge exempel på kommandon för att rulla tillbaka koden och motivera när man skulle 
+använda den ena eller andra metoden. 
+
+För att rulla tillbaka koden när man vill ta bort ändringar som man commitat men som man vill
+behålla i sin staging area kan man använda git reset --soft HEAD~2 om man vill rulla tillbaka två ändringar tillbaka.
+Använder man istället git reset HEAD~2 flyttar tillbaka det du nyligen commitat (så långt som du 
+angett med HEAD) men filerna flyttas också från staging area men med bibehållna ändringar. 
+De står alltså då i kö för att läggas i staging area. Output är 'Oköade ändringar efter återställning' och sen filnamnet.
+git reset --hard HEAD~2 tar både bort ändringar du commitat, tar bort filerna från staging area OCH 
+tar bort ändringarna från filen. Man får output 'HEAD är nu på 5a30653 rolling ahead 2'.
+Man kan också använda sig av git revert , där ändrar man inte i historiken men man kan ta en commit och 
+dra tillbaka ändringarna i dem men genom att git revert istället skapar en ny commit förlorar man ingen historik.
+Slutligen har vi git restore vilket generellt sätt passar bäst att använda när du har lokala ändringar som 
+du vill ändra tillbaka innan du har lagt till dem i staging area och committat. 
+git restore --staged filnamn.txt kan användas om jag har lagt till en fil av misstag i staging area.
+
+
